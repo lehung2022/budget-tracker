@@ -49,7 +49,7 @@ export default function BudgetCard({
             >
               Add Expense
             </Button>
-            <Button onClick={onViewExpensesClick} variant="outline-secondary">
+            <Button onClick={onViewExpensesClick} variant="outline-info">
               View Expenses
             </Button>
           </Stack>
