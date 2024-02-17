@@ -25,12 +25,12 @@ function App() {
     <>
       <Container className="my-4">
         <Stack direction="horizontal" gap="2" className="mb-4">
-          <h1 className="me-auto text-light">Budgets</h1>
+          <h1 className="me-auto text-light">Ngân sách</h1>
           <Button variant="primary" onClick={() => setShowAddBudgetModal(true)}>
-            Add Budget
+            Thêm phần ngân sách
           </Button>
           <Button variant="outline-light" onClick={openAddExpenseModal}>
-            Add Expense
+            Thêm khoản chi tiêu 
           </Button>
         </Stack>
         <div

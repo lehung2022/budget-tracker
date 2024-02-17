@@ -12,20 +12,20 @@ export default function BudgetCard({
 }) {
   const classNames = []
   if (amount > max) {
-    classNames.push("bg-danger", "bg-opacity-10")
+    classNames.push("bg-danger", "bg-opacity-10", "text-primary")
   } else if (gray) {
-    classNames.push("bg-light")
+    classNames.push("bg-light", "text-primary")
   }
 
   return (
     <Card className={classNames.join(" ")}>
       <Card.Body>
         <Card.Title className="d-flex justify-content-between align-items-baseline fw-normal mb-3">
-          <div className="me-2">{name}</div>
-          <div className="d-flex align-items-baseline">
+          <div className="me-2 text-primary">{name}</div>
+          <div className="d-flex align-items-baseline text-primary">
             {currencyFormatter.format(amount)}
             {max && (
-              <span className="text-muted fs-6 ms-1">
+              <span className="text-primary fs-6 ms-1">
                 / {currencyFormatter.format(max)}
               </span>
             )}
@@ -47,10 +47,10 @@ export default function BudgetCard({
               className="ms-auto"
               onClick={onAddExpenseClick}
             >
-              Add Expense
+              Thêm khoản chi tiêu
             </Button>
             <Button onClick={onViewExpensesClick} variant="outline-info">
-              View Expenses
+              Xem khoản chi tiêu
             </Button>
           </Stack>
         )}

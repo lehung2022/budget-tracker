@@ -26,15 +26,15 @@ export default function AddExpenseModal({
     <Modal show={show} onHide={handleClose}>
       <Form onSubmit={handleSubmit}>
         <Modal.Header closeButton>
-          <Modal.Title>New Expense</Modal.Title>
+          <Modal.Title>Khoản chi mới</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form.Group className="mb-3" controlId="description">
-            <Form.Label>Description</Form.Label>
+            <Form.Label>Mô tả</Form.Label>
             <Form.Control ref={descriptionRef} type="text" required />
           </Form.Group>
           <Form.Group className="mb-3" controlId="amount">
-            <Form.Label>Amount</Form.Label>
+            <Form.Label>Số lượng</Form.Label>
             <Form.Control
               ref={amountRef}
               type="number"
@@ -44,7 +44,7 @@ export default function AddExpenseModal({
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="budgetId">
-            <Form.Label>Budget</Form.Label>
+            <Form.Label>Ngân sách</Form.Label>
             <Form.Select defaultValue={defaultBudgetId} ref={budgetIdRef}>
               <option id={UNCATEGORIZED_BUDGET_ID}>Uncategorized</option>
               {budgets.map(budget => (
@@ -56,7 +56,7 @@ export default function AddExpenseModal({
           </Form.Group>
           <div className="d-flex justify-content-end">
             <Button variant="primary" type="submit">
-              Add
+              Thêm
             </Button>
           </div>
         </Modal.Body>
