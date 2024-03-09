@@ -23,13 +23,24 @@ export const BudgetProvider = ({ children }) => {
     })
   }
   function addBudget({ name, max }) {
+    const _date = new Date();
     setBudgets(prevBudgets => {
       if (prevBudgets.find(budget => budget.name === name)) {
         return prevBudgets
       }
-      return [...prevBudgets, { id: uuidV4(), name, max }]
+      return [...prevBudgets, { id: uuidV4(), name, max, date: Date.now() }]
+    });
+  }
+
+  function addDate({ name, max }) {
+    setDate(prevDates => {
+      if (prevDates.find(date => date.date === date)) {
+        return prevDates
+      }
+      return [...prevDates, { id: uuidV4(), date }]
     })
   }
+
   function deleteBudget({ id }) {
     setExpenses(prevExpenses => {
       return prevExpenses.map(expense => {

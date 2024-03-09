@@ -1,22 +1,26 @@
-import { Button, Card, ProgressBar, Stack } from "react-bootstrap"
-import { currencyFormatter } from "../utils"
-
+import { Button, Card, ProgressBar, Stack } from "react-bootstrap";
+import { currencyFormatter } from "../utils";
+import moment from "moment";
 export default function BudgetCard({
+  isShowTime,
+  index,
+  length,
   name,
   amount,
+  date,
   max,
   gray,
   hideButtons,
   onAddExpenseClick,
   onViewExpensesClick,
 }) {
-  const classNames = []
+  const classNames = [];
   if (amount > max) {
-    classNames.push("bg-danger", "bg-opacity-10", "text-primary")
+    classNames.push("bg-danger", "bg-opacity-10", "text-primary");
   } else if (gray) {
-    classNames.push("bg-light", "text-primary")
+    classNames.push("bg-light", "text-primary");
   }
-
+  console.log(typeof date);
   return (
     <Card className={classNames.join(" ")}>
       <Card.Body>
@@ -54,14 +58,15 @@ export default function BudgetCard({
             </Button>
           </Stack>
         )}
+        {isShowTime && !isShowTime ? <div>{index === length ? moment(date).format("DD/MM/YYYY h:mm:ss") : ''}</div>: ""}
       </Card.Body>
     </Card>
-  )
+  );
 }
 
 function getProgressBarVariant(amount, max) {
-  const ratio = amount / max
-  if (ratio < 0.5) return "primary"
-  if (ratio < 0.75) return "warning"
-  return "danger"
+  const ratio = amount / max;
+  if (ratio < 0.5) return "primary";
+  if (ratio < 0.75) return "warning";
+  return "danger";
 }

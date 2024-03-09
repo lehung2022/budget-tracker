@@ -41,16 +41,19 @@ function App() {
             alignItems: "flex-start",
           }}
         >
-          {budgets.map((budget) => {
+          {budgets.map((budget, index) => {
             const amount = getBudgetExpenses(budget.id).reduce(
               (total, expense) => total + expense.amount,
               0
             );
             return (
               <BudgetCard
+                index={index}
+                length={budgets.length - 1}
                 key={budget.id}
                 name={budget.name}
                 amount={amount}
+                date={budget.date}
                 max={budget.max}
                 onAddExpenseClick={() => openAddExpenseModal(budget.id)}
                 onViewExpensesClick={() =>
