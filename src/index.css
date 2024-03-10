@@ -19,3 +19,11 @@ body {
     background-size: cover;
 }
 
+
+.time-view {
+  margin-top: 10px;
+  display: flex;
+  justify-content: right;
+  font-size: small;
+  font-style: italic;
+}
