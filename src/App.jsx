@@ -30,7 +30,7 @@ function App() {
             Thêm phần ngân sách
           </Button>
           <Button variant="outline-light" onClick={openAddExpenseModal}>
-            Thêm khoản chi tiêu 
+            Thêm khoản chi tiêu
           </Button>
         </Stack>
         <div
@@ -48,6 +48,7 @@ function App() {
             );
             return (
               <BudgetCard
+                isShowTime={true}
                 index={index}
                 length={budgets.length - 1}
                 key={budget.id}

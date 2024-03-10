@@ -20,7 +20,7 @@ export default function BudgetCard({
   } else if (gray) {
     classNames.push("bg-light", "text-primary");
   }
-  console.log(typeof date);
+
   return (
     <Card className={classNames.join(" ")}>
       <Card.Body>
@@ -58,7 +58,7 @@ export default function BudgetCard({
             </Button>
           </Stack>
         )}
-        {isShowTime && !isShowTime ? <div>{index === length ? moment(date).format("DD/MM/YYYY h:mm:ss") : ''}</div>: ""}
+        <div className="time-view">{index === length && isShowTime ? moment(date).format("DD/MM/YYYY h:mm:ss") : ''}</div>
       </Card.Body>
     </Card>
   );
