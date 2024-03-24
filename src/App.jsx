@@ -8,6 +8,7 @@ import UncategorizedBudgetCard from "./components/UncategorizedBudgetCard";
 import TotalBudget from "./components/TotalBudget";
 import { useState } from "react";
 import { UNCATEGORIZED_BUDGET_ID, useBudgets } from "./context/BudgetContext";
+import EditBudgetModal from "./components/EditBudgetModal";
 
 function App() {
   const [showAddBudgetModal, setShowAddBudgetModal] = useState(false);
@@ -15,10 +16,23 @@ function App() {
   const [viewExpensesModalBudgetId, setViewExpensesModalBudgetId] = useState();
   const [addExpenseModalBudgetId, setAddExpenseModalBudgetId] = useState();
   const { budgets, getBudgetExpenses } = useBudgets();
+  const [showEditBudgetModal, setShowEditBudgetModal] = useState(false); // State for EditBudgetModal
+  const [editBudgetId, setEditBudgetId] = useState(); // State for edited budget ID
 
   function openAddExpenseModal(budgetId) {
     setShowAddExpenseModal(true);
     setAddExpenseModalBudgetId(budgetId);
+  }
+
+  // Function to open EditBudgetModal
+  function openEditBudgetModal(budgetId) {
+    setEditBudgetId(budgetId);
+    setShowEditBudgetModal(true);
+  }
+
+  // Function to close EditBudgetModal
+  function closeEditBudgetModal() {
+    setShowEditBudgetModal(false);
   }
 
   return (
@@ -59,6 +73,7 @@ function App() {
                 onViewExpensesClick={() =>
                   setViewExpensesModalBudgetId(budget.id)
                 }
+                onEditClick={() => openEditBudgetModal(budget.id)} // Function to handle edit action
               />
             );
           })}
@@ -84,6 +99,14 @@ function App() {
         budgetId={viewExpensesModalBudgetId}
         handleClose={() => setViewExpensesModalBudgetId()}
       />
+
+      {showEditBudgetModal && ( // Render EditBudgetModal only if showEditBudgetModal is true
+        <EditBudgetModal
+          show={showEditBudgetModal}
+          budget={budgets.find((budget) => budget.id === editBudgetId)}
+          handleClose={closeEditBudgetModal}
+        />
+      )}
     </>
   );
 }
