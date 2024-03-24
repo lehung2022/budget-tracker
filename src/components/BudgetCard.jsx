@@ -1,10 +1,10 @@
 import { Button, Card, ProgressBar, Stack } from "react-bootstrap";
 import { currencyFormatter } from "../utils";
 import moment from "moment";
+//   isShowTime,  length, index are three props that i passed in before. I no longer need them
+  
+
 export default function BudgetCard({
-  isShowTime,
-  index,
-  length,
   name,
   amount,
   date,
@@ -21,6 +21,13 @@ export default function BudgetCard({
     classNames.push("bg-light", "text-primary");
   }
   console.log(typeof date);
+
+  function getProgressBarVariant(amount, max) {
+    const ratio = amount / max;
+    if (ratio < 0.5) return "primary";
+    if (ratio < 0.75) return "warning";
+    return "danger";
+  }
   return (
     <Card className={classNames.join(" ")}>
       <Card.Body>
@@ -58,15 +65,14 @@ export default function BudgetCard({
             </Button>
           </Stack>
         )}
-        {isShowTime && !isShowTime ? <div>{index === length ? moment(date).format("DD/MM/YYYY h:mm:ss") : ''}</div>: ""}
+        {/* {isShowTime && !isShowTime ? <div>{index === length ? moment(date).format("DD/MM/YYYY h:mm:ss") : ''}</div>: ""} */}
+        {date && (
+          <div className="time-view">
+            {moment(date).format("DD/MM/YYYY h:mm:ss")}
+          </div>
+        )}
+        {/* Display time based on isShowTime prop */}
       </Card.Body>
     </Card>
   );
-}
-
-function getProgressBarVariant(amount, max) {
-  const ratio = amount / max;
-  if (ratio < 0.5) return "primary";
-  if (ratio < 0.75) return "warning";
-  return "danger";
 }

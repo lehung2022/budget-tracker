@@ -23,7 +23,7 @@ export const BudgetProvider = ({ children }) => {
     })
   }
   function addBudget({ name, max }) {
-    const _date = new Date();
+    // const _date = new Date();
     setBudgets(prevBudgets => {
       if (prevBudgets.find(budget => budget.name === name)) {
         return prevBudgets
@@ -32,14 +32,14 @@ export const BudgetProvider = ({ children }) => {
     });
   }
 
-  function addDate({ name, max }) {
-    setDate(prevDates => {
-      if (prevDates.find(date => date.date === date)) {
-        return prevDates
-      }
-      return [...prevDates, { id: uuidV4(), date }]
-    })
-  }
+  // function addDate({ name, max }) {
+  //   setDate(prevDates => {
+  //     if (prevDates.find(date => date.date === date)) {
+  //       return prevDates
+  //     }
+  //     return [...prevDates, { id: uuidV4(), date }]
+  //   })
+  // }
 
   function deleteBudget({ id }) {
     setExpenses(prevExpenses => {

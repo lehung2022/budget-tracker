@@ -48,8 +48,8 @@ function App() {
             );
             return (
               <BudgetCard
-                index={index}
-                length={budgets.length - 1}
+                // index={index}
+                // length={budgets.length - 1}
                 key={budget.id}
                 name={budget.name}
                 amount={amount}
