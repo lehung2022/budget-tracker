@@ -35,6 +35,8 @@ function App() {
     setShowEditBudgetModal(false);
   }
 
+  console.log("Budgets from context:", budgets);
+
   return (
     <>
       <Container className="my-4">
@@ -62,12 +64,10 @@ function App() {
             );
             return (
               <BudgetCard
-                // index={index}
-                // length={budgets.length - 1}
                 key={budget.id}
                 name={budget.name}
                 amount={amount}
-                date={budget.date}
+                day={budget.day} // Pass the date property to the BudgetCard component
                 max={budget.max}
                 onAddExpenseClick={() => openAddExpenseModal(budget.id)}
                 onViewExpensesClick={() =>

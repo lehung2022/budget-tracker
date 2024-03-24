@@ -7,13 +7,14 @@ import { useBudgets } from "../context/BudgetContext"; // Import the useBudgets 
 export default function BudgetCard({
   name,
   amount,
-  date,
+  day,
   max,
   gray,
   hideButtons,
   onAddExpenseClick,
   onViewExpensesClick,
   onEditClick,
+  hideEditButton, // Accept the hideEditButton prop
 }) {
   const classNames = [];
   if (amount > max) {
@@ -21,7 +22,7 @@ export default function BudgetCard({
   } else if (gray) {
     classNames.push("bg-light", "text-primary");
   }
-  console.log(typeof date);
+  console.log("Received date prop:", day);
 
   function getProgressBarVariant(amount, max) {
     const ratio = amount / max;
@@ -30,7 +31,7 @@ export default function BudgetCard({
     return "danger";
   }
 
-  const { editBudget } = useBudgets(); // Use the useBudgets hook
+  // const { editBudget } = useBudgets(); // Use the useBudgets hook
   return (
     <Card className={classNames.join(" ")}>
       <Card.Body>
@@ -44,10 +45,12 @@ export default function BudgetCard({
               </span>
             )}
           </div>
-          {/* Add the "Edit" button */}
-          <Button variant="info" onClick={onEditClick}>
-            Chỉnh sửa
-          </Button>
+          {/* Conditionally render the "Edit" button based on hideEditButton prop */}
+          {!hideEditButton && (
+            <Button variant="info" onClick={onEditClick}>
+              Chỉnh sửa
+            </Button>
+          )}
         </Card.Title>
         {max && (
           <ProgressBar
@@ -73,13 +76,9 @@ export default function BudgetCard({
           </Stack>
         )}
         {/* {isShowTime && !isShowTime ? <div>{index === length ? moment(date).format("DD/MM/YYYY h:mm:ss") : ''}</div>: ""} */}
-        {date && (
-          <div className="time-view">
-            {/* {moment(date).format("DD/MM/YYYY h:mm:ss")} */}
-            {moment(date || new Date()).format("DD/MM/YYYY h:mm:ss")}
-          </div>
-        )}
-        {/* Display time based on isShowTime prop */}
+
+        {/* Display the date */}
+        {/*  */}
       </Card.Body>
     </Card>
   );

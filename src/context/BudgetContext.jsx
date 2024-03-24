@@ -23,12 +23,12 @@ export const BudgetProvider = ({ children }) => {
     });
   }
   function addBudget({ name, max }) {
-    
+// Add the time and date here 
     setBudgets((prevBudgets) => {
       if (prevBudgets.find((budget) => budget.name === name)) {
         return prevBudgets;
       }
-      return [...prevBudgets, { id: uuidV4(), name, max}];
+      return [...prevBudgets, { id: uuidV4(), name, max }];
     });
   }
 
