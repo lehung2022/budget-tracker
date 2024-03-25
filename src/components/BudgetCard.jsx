@@ -5,7 +5,6 @@ import moment from "moment";
 import { useBudgets } from "../context/BudgetContext"; // Import the useBudgets hook
 
 export default function BudgetCard({
-  isShowTime,
   name,
   amount,
   _date,
@@ -32,11 +31,11 @@ export default function BudgetCard({
     return "danger";
   }
 
-  const { editBudget } = useBudgets(); 
+  const { editBudget } = useBudgets();
   // Use the useBudgets hook
   return (
     <Card className={classNames.join(" ")}>
-      <Card.Body>
+      <Card.Body className="col-12" style={{ width: "100%" }}>
         <Card.Title className="d-flex justify-content-between align-items-baseline fw-normal mb-3">
           <div className="me-2 text-primary">{name}</div>
           <div className="d-flex align-items-baseline text-primary">

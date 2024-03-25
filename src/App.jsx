@@ -68,7 +68,7 @@ function App() {
                 key={budget.id}
                 name={budget.name}
                 amount={amount}
-                day={budget.day} // Pass the date property to the BudgetCard component
+                _date={budget._date} // Pass the date property to the BudgetCard component
                 max={budget.max}
                 onAddExpenseClick={() => openAddExpenseModal(budget.id)}
                 onViewExpensesClick={() =>
