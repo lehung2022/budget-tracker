@@ -23,12 +23,13 @@ export const BudgetProvider = ({ children }) => {
     });
   }
   function addBudget({ name, max }) {
-// Add the time and date here 
+    // Add the time and date here
+    const _date = new Date();
     setBudgets((prevBudgets) => {
       if (prevBudgets.find((budget) => budget.name === name)) {
         return prevBudgets;
       }
-      return [...prevBudgets, { id: uuidV4(), name, max }];
+      return [...prevBudgets, { id: uuidV4(), name, max, _date }];
     });
   }
 
@@ -61,6 +62,15 @@ export const BudgetProvider = ({ children }) => {
     });
   }
 
+  function addDate({ name, max }) {
+    
+    setDate((prevDates) => {
+      if (prevDates.find((date) => date.date === date)) {
+        return prevDates;
+      }
+      return [...prevDates, { id: uuidV4(), date }];
+    });
+  }
   return (
     <BudgetContext.Provider
       value={{
@@ -72,6 +82,7 @@ export const BudgetProvider = ({ children }) => {
         deleteBudget,
         deleteExpense,
         editBudget,
+        addDate
       }}
     >
       {children}

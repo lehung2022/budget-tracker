@@ -64,6 +64,7 @@ function App() {
             );
             return (
               <BudgetCard
+                isShowTime={true}
                 key={budget.id}
                 name={budget.name}
                 amount={amount}

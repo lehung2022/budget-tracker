@@ -5,9 +5,10 @@ import moment from "moment";
 import { useBudgets } from "../context/BudgetContext"; // Import the useBudgets hook
 
 export default function BudgetCard({
+  isShowTime,
   name,
   amount,
-  day,
+  _date,
   max,
   gray,
   hideButtons,
@@ -22,7 +23,7 @@ export default function BudgetCard({
   } else if (gray) {
     classNames.push("bg-light", "text-primary");
   }
-  console.log("Received date prop:", day);
+  console.log("Received date prop:", _date);
 
   function getProgressBarVariant(amount, max) {
     const ratio = amount / max;
@@ -31,7 +32,8 @@ export default function BudgetCard({
     return "danger";
   }
 
-  // const { editBudget } = useBudgets(); // Use the useBudgets hook
+  const { editBudget } = useBudgets(); 
+  // Use the useBudgets hook
   return (
     <Card className={classNames.join(" ")}>
       <Card.Body>
@@ -76,7 +78,11 @@ export default function BudgetCard({
           </Stack>
         )}
         {/* {isShowTime && !isShowTime ? <div>{index === length ? moment(date).format("DD/MM/YYYY h:mm:ss") : ''}</div>: ""} */}
-
+        {_date && (
+          <div className="time-view">
+            {moment(_date).format("DD/MM/YYYY h:mm:ss")}
+          </div>
+        )}
         {/* Display the date */}
         {/*  */}
       </Card.Body>
