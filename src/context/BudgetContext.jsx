@@ -15,6 +15,11 @@ export const BudgetProvider = ({ children }) => {
   const [expenses, setExpenses] = useLocalStorage("expenses", []);
 
   function getBudgetExpenses(budgetId) {
+    // Ensure expenses is an array before filtering
+    if (!Array.isArray(expenses)) {
+      return [];
+    }
+
     return expenses.filter((expense) => expense.budgetId === budgetId);
   }
   function addExpense({ description, amount, budgetId }) {
@@ -63,7 +68,6 @@ export const BudgetProvider = ({ children }) => {
   }
 
   function addDate({ name, max }) {
-    
     setDate((prevDates) => {
       if (prevDates.find((date) => date.date === date)) {
         return prevDates;
@@ -82,7 +86,7 @@ export const BudgetProvider = ({ children }) => {
         deleteBudget,
         deleteExpense,
         editBudget,
-        addDate
+        addDate,
       }}
     >
       {children}
